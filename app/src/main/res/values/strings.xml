@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">AppListaCurso</string>
+    <string name="txt_hint_primeiro_nome">Primeiro nome</string>
+    <string name="txt_hint_sobrenome">Sobrenome</string>
+    <string name="txt_hint_nome_curso">Nome do curso desejado</string>
+    <string name="txt_hint_telefone">Telefone</string>
+    <string name="txt_button_limpar">Limpar</string>
+    <string name="txt_button_salvar">Salvar</string>
+    <string name="txt_button_finalizar">Finalizar</string>
+    <string name="txt_titulo">Tela de envio de interesse em curso</string>
+</resources>
