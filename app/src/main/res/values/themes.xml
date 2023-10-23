@@ -1,8 +1,11 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="inputNome">@color/black</color>
+
     <!-- Base application theme. -->
     <style name="Base.Theme.AppListaCurso" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/light_blue</item>
+        <item name="hintTextColor">@color/black</item>
     </style>
 
     <style name="Theme.AppListaCurso" parent="Base.Theme.AppListaCurso" />
