@@ -1,40 +1,51 @@
 package com.example.applistacurso.view
 
-import android.content.SharedPreferences
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatDelegate
+import androidx.lifecycle.lifecycleScope
+import com.example.applistacurso.controller.CursoController
+import com.example.applistacurso.controller.DarkModeController
+import com.example.applistacurso.data.db.AppDatabase
 import com.example.applistacurso.databinding.ActivityMainBinding
 import com.example.applistacurso.model.Curso
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-
-    private lateinit var appPreferences: SharedPreferences
-    private var isDarkThemeEnabled = false
+    private lateinit var database: AppDatabase
+    private lateinit var cursoController: CursoController
+    private lateinit var darkModeController: DarkModeController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        darkModeController = DarkModeController(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        appPreferences = getSharedPreferences("AppListaCursoPreferences", MODE_PRIVATE)
-        isDarkThemeEnabled = appPreferences.getBoolean("isDarkTheme", false)
+        database = AppDatabase.getInstance(this)
+        cursoController = CursoController(database.cursoDAO())
 
-        getThemeEnabled()
         setupListeners()
-        toggleDarkThemeSwitch()
     }
 
     private fun setupListeners() {
-        val buttonFinalizar = binding.buttonFinalizar
-        buttonFinalizar.setOnClickListener {
-            handleFinalizarClick()
+        binding.switchMode.isChecked = darkModeController.isDarkModeEnabled()
+
+        toggleDarkThemeSwitch()
+        handleLimparClick()
+        val buttonSalvar = binding.buttonSalvar
+        buttonSalvar.setOnClickListener {
+            lifecycleScope.launch {
+                handleSalvarClick()
+            }
         }
+        handleFinalizarClick()
     }
 
-    private fun handleFinalizarClick() {
+
+    private suspend fun handleSalvarClick() {
         val firstName = binding.editTextPrimeiroNome.text.toString()
         val lastName = binding.editTextSobrenome.text.toString()
         val desiredCourse = binding.editTextNomeCurso.text.toString()
@@ -42,36 +53,40 @@ class MainActivity : AppCompatActivity() {
 
         val curso = Curso(firstName, lastName, desiredCourse, phone)
 
-        Toast.makeText(this, curso.primeiroNome, Toast.LENGTH_LONG).show()
+        cursoController.insertCurso(curso)
+        Toast.makeText(this, "Salvo com sucesso!", Toast.LENGTH_LONG).show()
         printCursoDetails(curso)
-    }
 
-    private fun getThemeEnabled() {
-        val switchMode = binding.switchMode
-        switchMode.isActivated = isDarkThemeEnabled
-
-        if (isDarkThemeEnabled) {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-        } else {
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        }
+        clearInputFields()
     }
 
     private fun toggleDarkThemeSwitch() {
         val switchMode = binding.switchMode
 
         switchMode.setOnCheckedChangeListener { _, isChecked ->
-            isDarkThemeEnabled = isChecked
+            darkModeController.setDarkModeEnabled(isChecked)
+        }
+    }
 
-            val editor = appPreferences.edit()
-            editor.putBoolean("isDarkTheme", isDarkThemeEnabled)
-            editor.apply()
+    private fun clearInputFields() {
+        binding.editTextPrimeiroNome.text.clear()
+        binding.editTextSobrenome.text.clear()
+        binding.editTextNomeCurso.text.clear()
+        binding.editTextTelefone.text.clear()
+    }
 
-            if (isDarkThemeEnabled) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
+    private fun handleLimparClick() {
+        val buttonLimpar = binding.buttonLimpar
+        buttonLimpar.setOnClickListener {
+            clearInputFields()
+        }
+    }
+
+    private fun handleFinalizarClick() {
+        val buttonFinalizar = binding.buttonFinalizar
+        buttonFinalizar.setOnClickListener {
+            val intent = Intent(this, ListaCursosActivity::class.java)
+            startActivity(intent)
         }
     }
 
