@@ -1,6 +1,6 @@
 # App Cadastrar Interesse
 
-App Cadastrar Interesse é um aplicativo Android desenvolvido para cadastrar interesse em algum curso e visualizar sua lista de interesses.
+App Cadastrar Interesse é um aplicativo Android desenvolvido para cadastrar interesse em algum curso e visualizar sua lista de cursos interessados;
 
 ## Destaques
 
@@ -12,7 +12,7 @@ App Cadastrar Interesse é um aplicativo Android desenvolvido para cadastrar int
 
 ## Pré-requisitos
 
-- Dispositivo Android com versão 7 ou posterior.
+- Dispositivo Android ou emulador com sistema operacional Android 7+.
   
 ## Instalação
 
