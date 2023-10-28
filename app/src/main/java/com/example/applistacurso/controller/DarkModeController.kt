@@ -2,10 +2,9 @@ package com.example.applistacurso.controller
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.widget.Switch
 import androidx.appcompat.app.AppCompatDelegate
 
-class DarkModeController(private val context: Context) {
+class DarkModeController(context: Context) {
     private val appPreferences: SharedPreferences =
         context.getSharedPreferences("AppListaCursoPreferences", Context.MODE_PRIVATE)
 
@@ -13,7 +12,6 @@ class DarkModeController(private val context: Context) {
         val isDarkModeEnabled = isDarkModeEnabled()
 
         setDarkModeEnabled(isDarkModeEnabled)
-        //switch.isChecked = isDarkModeEnabled
     }
 
     // Função para verificar se o modo escuro está ativado

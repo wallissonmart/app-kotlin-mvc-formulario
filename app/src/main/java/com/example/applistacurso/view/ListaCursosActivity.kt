@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.applistacurso.R
 import com.example.applistacurso.controller.CursoController
 import com.example.applistacurso.data.db.AppDatabase
-import com.example.applistacurso.data.db.dao.CursoDAO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
