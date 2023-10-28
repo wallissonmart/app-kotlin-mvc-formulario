@@ -23,14 +23,14 @@ App Cadastrar Interesse é um aplicativo Android desenvolvido para cadastrar int
 
 ## Uso
 
-Inserir Curso:
-Preencha os campos com as informações do curso desejado.
-Toque no botão "Salvar" para salvar as informações do curso.
+Inserir Curso:  
+Preencha os campos com as informações do curso desejado.  
+Toque no botão "Salvar" para salvar as informações do curso.  
 
-Visualizar Cursos Salvos:
-Ao clicar no botão "Finalizar" você verá a lista dos cursos que salvou.
+Visualizar Cursos Salvos:  
+Ao clicar no botão "Finalizar" você verá a lista dos cursos que salvou.  
 
-Alternar Modo de Tema:
+Alternar Modo de Tema:  
 Você pode usar o interruptor para alternar entre os modos claro e escuro do aplicativo.
 
 ## Contribuição
