@@ -16,19 +16,10 @@ App Cadastrar Interesse é um aplicativo Android desenvolvido para cadastrar int
   
 ## Instalação
 
-1. Clone este repositório: `git clone https://github.com/seu-usuario/seu-repositorio.git`.
+1. Clone este repositório: `git clone https://github.com/wallissonmart/app-kotlin-mvc-formulario.git`.
 2. Abra o projeto no Android Studio.
 3. Aguarde a sincronização das dependências do Gradle.
 4. Execute o aplicativo em um emulador ou dispositivo físico.
-
-## Arquitetura
-
-O aplicativo segue a arquitetura MV (Model-View) para uma organização eficiente do código. Ele é dividido nas seguintes camadas:
-
-- **Model**: Inclui as classes de dados, entidades da Room DB e lógica de acesso a dados.
-- **View**: Contém as atividades e fragmentos que compõem a interface do usuário.
-- **ViewModel**: Responsável por fornecer dados para a interface do usuário e tratar a lógica de negócios.
-- **Controller/Repository**: Atua como uma ponte entre a camada de Model e ViewModel, executando operações no banco de dados e fornecendo dados.
 
 ## Uso
 
